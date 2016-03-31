@@ -1,10 +1,6 @@
 package lucene;
 
 import java.io.File;
-//import java.io.FileInputStream;
-//import java.io.FileNotFoundException;
-//import java.io.FileOutputStream;
-//import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,66 +19,4 @@ public class Stopwords {
 		else return false;
 	}
 
-//	public void removeStopwords() {
-//		String word, text, filename;
-//		char[] w = new char[501];
-//
-//		for (File file : dir.listFiles())
-//			try {
-//				FileInputStream in = new FileInputStream(file);
-//				text = "";
-//				filename = file.getName();
-//				try {
-//					while(true) {
-//						word = ""; 
-//						int ch = in.read();
-//						if (Character.isLetter((char) ch)) {
-//							int j = 0;
-//
-//							while(true) {
-//								ch = Character.toLowerCase((char) ch);
-//								w[j] = (char) ch;
-//								if (j < 500) j++;
-//								ch = in.read();
-//
-//								if (!Character.isLetter((char) ch)) { 
-//									for (int c = 0; c < j; c++)
-//										word += w[c];
-//
-//									if(!isStopword(word)) {
-//										text += word;
-//										System.out.print(word);
-//									} else {
-//										System.out.print("(" + word + ")");
-//									}
-//									break;
-//								}
-//							}
-//						}
-//						if (ch < 0) break;
-//						System.out.print((char)ch);
-//						text += ' ';
-//					}
-//
-//					FileOutputStream out = new FileOutputStream("/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/Stopwords-docs/"+filename);
-//					new PrintStream(out).print(text);
-//					out.close();
-//					in.close();
-//
-//				} catch (Exception e) {
-//					System.out.println("error reading " + file);
-//					break;
-//				}
-//
-//			} catch (FileNotFoundException e) {
-//				System.out.println("File not found.");
-//				break;
-//			}
-//
-//	}
-//
-//	public static void main(String[] args) {
-//		Stopwords rst = new Stopwords();
-//		rst.removeStopwords();
-//	}
 }

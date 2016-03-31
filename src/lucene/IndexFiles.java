@@ -19,6 +19,7 @@ package lucene;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.LongField;
@@ -103,7 +104,7 @@ public class IndexFiles {
 				System.out.println("Indexing to directory '" + indexPath[i] + "'...");
 
 				Directory dir = FSDirectory.open(Paths.get(indexPath[i]));
-				Analyzer analyzer = new StandardAnalyzer();
+				Analyzer analyzer = new StandardAnalyzer(CharArraySet.EMPTY_SET);
 				IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
 
 				if (create) {
