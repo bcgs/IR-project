@@ -68,20 +68,21 @@ public class IndexFiles {
 	public static void main(String[] args) {
 
 		String[] indexPath = {
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_00",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_01",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_10",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_11"
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_00",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_01",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_10",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_11"
 		};
 
 		String[] docsPath = {
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/docs/docs_00",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/docs/docs_01",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/docs/docs_10",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/docs/docs_11",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/docs/docs_00",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/docs/docs_01",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/docs/docs_10",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/docs/docs_11",
 		};
 
 		boolean create = true;
+		//renameFile(docsPath[0], docsPath[0]);
 
 		try {
 			for (int i = 0; i < indexPath.length; i++) {
@@ -145,16 +146,26 @@ public class IndexFiles {
 		}
 	}
 	
+	static void renameFile(String from, String to) {
+		File dir = new File(from);
+		int i = 1;
+		for (File file : dir.listFiles()) {
+			File newName = new File(to + "/" + String.format("%03d", i));
+			file.renameTo(newName);
+			i++;
+		}
+	}
+	
 	static void createFiles(String from, String to, int code) {
-		String word, text, filename;
+		String word, text;
 		char[] w = new char[501];
+		int i = 1;
 
 		File dir = new File(from);
 		for (File file : dir.listFiles())
 			try {
 				text = "";
 				FileInputStream in = new FileInputStream(file);
-				filename = file.getName();
 				while(true) {
 					word = ""; 
 					int ch = in.read();
@@ -190,8 +201,9 @@ public class IndexFiles {
 					if (ch < 0) break;
 				}
 
-				FileOutputStream out = new FileOutputStream(to +"/"+ filename);
+				FileOutputStream out = new FileOutputStream(to +"/"+ String.format("%03d", i));
 				new PrintStream(out).println(text);
+				i++;
 				out.close();
 				in.close();
 

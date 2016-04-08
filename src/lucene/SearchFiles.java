@@ -18,14 +18,18 @@ package lucene;
  */
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -46,10 +50,10 @@ public class SearchFiles {
 	public static void main(String[] args) throws Exception {
 
 		String[] index = {
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_00",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_01",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_10",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/Test/index-folders/index_11"
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_00",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_01",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_10",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_11"
 		};
 		String field = "contents";
 		String queries = null;
@@ -70,10 +74,25 @@ public class SearchFiles {
 
 		IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index[Integer.parseInt(code)])));
 		IndexSearcher searcher = new IndexSearcher(reader);
-		Analyzer analyzer = new StandardAnalyzer();
+		Analyzer analyzer = new StandardAnalyzer(CharArraySet.EMPTY_SET);
 
 		QueryParser parser = new QueryParser(field, analyzer);
 		while (true) {
+			
+//			System.out.println("LogReset (y/n)?");
+//			String line = in.readLine();
+//			if(line.charAt(0) == 'y') {
+//				File log = new File("log.txt");
+//				try {
+//					PrintWriter out = new PrintWriter(log);
+//					out.print("");
+//					out.close();
+//				} catch (IOException e) {
+//					System.out.println("File not read.");
+//				}
+//				System.out.println("Log reseted!");
+//				line = "";
+//			}
 
 			if (queries == null && queryString == null) {
 				System.out.println("Enter query: ");
@@ -149,7 +168,29 @@ public class SearchFiles {
 		}
 		reader.close();
 	}
-
+	
+	public static void log(ScoreDoc[] hits, int[] matrix) {
+		File log = new File("log.txt");
+		try {
+			if(log.exists()==false) {
+				System.out.println("New log created!");
+				log.createNewFile();
+			}
+			PrintWriter out = new PrintWriter(new FileWriter(log, true));
+			
+			for (int i = 0; i < hits.length; i++)
+				matrix[hits[i].doc] = 1;
+			
+			for (int i = 0; i < matrix.length; i++)
+				out.append(matrix[i]+" ");
+	
+			out.append('\n');
+			out.close();
+		} catch (IOException e) {
+			System.out.println("Error. No log created!");
+		}
+	}
+	
 	/**
 	 * This demonstrates a typical paging search scenario, where the search engine presents 
 	 * pages of size n to the user. The user can then go to the next page if interested in
@@ -162,11 +203,16 @@ public class SearchFiles {
 	 */
 	public static void doPagingSearch(BufferedReader in, IndexSearcher searcher, Query query, 
 			int hitsPerPage, boolean raw, boolean interactive) throws IOException {
-
+		
 		// Collect enough docs to show 5 pages
 		TopDocs results = searcher.search(query, 5 * hitsPerPage);
 		ScoreDoc[] hits = results.scoreDocs;
 
+		// Create log
+		// (hits.doc+1) <= doc hit by query
+//		int[] matrix = new int[200];
+//		log(hits, matrix);
+		
 		int numTotalHits = results.totalHits;
 		System.out.println(numTotalHits + " total matching documents");
 
@@ -175,7 +221,7 @@ public class SearchFiles {
 
 		while (true) {
 			if (end > hits.length) {
-				System.out.println("Only results 1 - " + hits.length +" of " + numTotalHits + " total matching uments collected.");
+				System.out.println("Only results 1 - " + hits.length +" of " + numTotalHits + " total matching documents collected.");
 				System.out.println("Collect more (y/n) ?");
 				String line = in.readLine();
 				if (line.length() == 0 || line.charAt(0) == 'n') {
