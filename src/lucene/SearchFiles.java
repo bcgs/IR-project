@@ -169,7 +169,8 @@ public class SearchFiles {
 		reader.close();
 	}
 	
-	public static void log(ScoreDoc[] hits, int[] matrix) {
+	public static void log(ScoreDoc[] hits) {
+		int[] matrix = new int[200];
 		File log = new File("log.txt");
 		try {
 			if(log.exists()==false) {
@@ -205,13 +206,12 @@ public class SearchFiles {
 			int hitsPerPage, boolean raw, boolean interactive) throws IOException {
 		
 		// Collect enough docs to show 5 pages
-		TopDocs results = searcher.search(query, 5 * hitsPerPage);
+		TopDocs results = searcher.search(query, 20 * hitsPerPage);
 		ScoreDoc[] hits = results.scoreDocs;
 
 		// Create log
 		// (hits.doc+1) <= doc hit by query
-//		int[] matrix = new int[200];
-//		log(hits, matrix);
+		//log(hits);
 		
 		int numTotalHits = results.totalHits;
 		System.out.println(numTotalHits + " total matching documents");
