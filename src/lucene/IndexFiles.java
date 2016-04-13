@@ -58,7 +58,7 @@ import java.util.Date;
  */
 public class IndexFiles {
 
-	private IndexFiles() {}
+	protected IndexFiles() {}
 
 	static PorterStemmer stemmer = new PorterStemmer();
 	static Stopwords sw = new Stopwords();
@@ -68,10 +68,10 @@ public class IndexFiles {
 	public static void main(String[] args) {
 
 		String[] indexPath = {
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_00",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_01",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_10",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_11"
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_00",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_01",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_10",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_11"
 		};
 
 		String[] docsPath = {

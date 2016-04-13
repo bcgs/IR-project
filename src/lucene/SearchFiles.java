@@ -44,16 +44,16 @@ import org.tartarus.snowball.ext.PorterStemmer;
 /** Simple command-line based search demo. */
 public class SearchFiles {
 
-	private SearchFiles() {}
+	protected SearchFiles() {}
 
 	/** Simple command-line based search demo. */
 	public static void main(String[] args) throws Exception {
 
 		String[] index = {
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_00",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_01",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_10",
-				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index-folders/index_11"
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_00",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_01",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_10",
+				"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_11"
 		};
 		String field = "contents";
 		String queries = null;
