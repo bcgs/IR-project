@@ -1,4 +1,4 @@
-package lucene;
+package luceneGUI;
 
 import java.awt.EventQueue;
 
@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class ShowFile extends JFrame {
+public class ShowFileGUI extends JFrame {
 
 	private JPanel contentPane;
 	public JTextArea textArea;
@@ -20,7 +20,7 @@ public class ShowFile extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ShowFile frame = new ShowFile();
+					ShowFileGUI frame = new ShowFileGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class ShowFile extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowFile() {
+	public ShowFileGUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 652, 505);
 		contentPane = new JPanel();

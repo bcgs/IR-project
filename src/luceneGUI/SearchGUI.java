@@ -19,7 +19,7 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import lucene.SearchFiles;
-import lucene.ShowFile;
+
 import javax.swing.ListSelectionModel;
 
 public class SearchGUI extends JFrame {
@@ -30,7 +30,7 @@ public class SearchGUI extends JFrame {
 	private static JTextPane tp_matches;
 	
 	private SearchFiles sf;
-	private ShowFile showfile;
+	private ShowFileGUI showfile;
 	private JButton btnPrevious;
 	private JButton btnNext;
 	private JButton btnOpen;
@@ -126,7 +126,7 @@ public class SearchGUI extends JFrame {
 		contentPane.add(btn_source);
 		
 		sf = new SearchFiles();
-		showfile = new ShowFile();
+		showfile = new ShowFileGUI();
 	}
 	
 	private void searchFiles(String input) {
