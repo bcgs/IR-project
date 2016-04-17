@@ -57,13 +57,13 @@ public class IndexGUI extends JFrame {
 		btn_index.setBounds(242, 244, 117, 29);
 		contentPane.add(btn_index);
 		
-		ta_content = new JTextArea();
-		ta_content.setEditable(false);
-		ta_content.setBounds(6, 6, 438, 225);
-		
-		JScrollPane scrollPane = new JScrollPane(ta_content);
+		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(6, 6, 588, 226);
 		contentPane.add(scrollPane);
+
+		ta_content = new JTextArea();
+		ta_content.setEditable(false);
+		scrollPane.setViewportView(ta_content);
 		
 		indexFiles = new IndexFiles();
 	}

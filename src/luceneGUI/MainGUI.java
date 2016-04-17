@@ -72,8 +72,8 @@ public class MainGUI extends JFrame {
 		btn_search.setBounds(177, 93, 117, 29);
 		contentPane.add(btn_search);
 		
-		JLabel lblChooseOption = new JLabel("Choose an option:");
-		lblChooseOption.setBounds(92, 75, 134, 16);
+		JLabel lblChooseOption = new JLabel("Pick an option:");
+		lblChooseOption.setBounds(106, 75, 134, 16);
 		contentPane.add(lblChooseOption);
 	}
 	
@@ -82,7 +82,7 @@ public class MainGUI extends JFrame {
 	}
 	
 	private void callSearch() {
-		
+		new SourceGUI().setVisible(true);
 	}
 	
 }

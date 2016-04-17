@@ -55,8 +55,8 @@ import java.util.Date;
 
 public class IndexFiles {
 
-	PorterStemmer stemmer = new PorterStemmer();
-	Stopwords sw = new Stopwords();
+	PorterStemmer stemmer;
+	Stopwords sw;
 	
 	private String[] indexPath = {
 			"/Users/bcgs/Documents/UFPE-stuff/Web-mining/1st-Task/index/index_00",
@@ -147,12 +147,14 @@ public class IndexFiles {
 									word += w[c];
 								}
 								if(code == 1) {
+									stemmer = new PorterStemmer();
 									stemmer.setCurrent(word);
 									stemmer.stem();
 									text += stemmer.getCurrent();
 									text += ' ';
 									break;
 								} else if(code == 2) {
+									sw = new Stopwords();
 									if(!sw.isStopword(word)) {
 										text += word;
 										text += ' ';
