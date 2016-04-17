@@ -49,7 +49,6 @@ public class SearchFiles {
 	private PorterStemmer stemmer;
 	private Stopwords sw;
 	private IndexSearcher searcher;
-//	public int sourceCode;
 	private boolean next, previous;
 	private int start, end;
 	private ScoreDoc[] hits;
@@ -58,7 +57,6 @@ public class SearchFiles {
 	private String field = "contents";
 
 	public void search(String input, int sourceCode) {
-		System.out.println("sourcecode: "+sourceCode);
 		
 		String line = input.trim();
 
@@ -67,18 +65,14 @@ public class SearchFiles {
 			// Se foi passado algo no input
 			String[] splitLine = line.split("\\s");
 
-			//TODO: nao esta entrando nas bases
-			
 			if(sourceCode == 0) {
 				lastAdjust(line, sourceCode);
 			}
 			if(sourceCode == 1) {
-				System.out.println("entrou aqui stem");
 				line = stemming(splitLine);
 				lastAdjust(line, sourceCode);
 			} 
 			if(sourceCode == 2) {
-				System.out.println("entrou aqui sw");
 				line = stopword(splitLine);
 				if(line.length() != 0)
 					lastAdjust(line, sourceCode);
@@ -144,16 +138,13 @@ public class SearchFiles {
 			if (path != null) {
 				printList[j] = (i+1) + ". " + path;
 				j++;
-				//print((i+1) + ". " + path);
 				String title = doc.get("title");
 				if (title != null) {
 					printList[j] = "   Title: " + doc.get("title");
-					//print("   Title: " + doc.get("title"));
 					j++;
 				}
 			} else {
 				printList[j] = (i+1) + ". " + "No path for this document";
-				//print((i+1) + ". " + "No path for this document");
 				j++;
 			}
 		}
@@ -235,10 +226,6 @@ public class SearchFiles {
 		}
 		return newStr;
 	}
-
-//	public void setSource(int code) {
-//		sourceCode = code;
-//	}
 
 	private void printMatches(String str) {
 		SearchGUI.setMatches(str);
