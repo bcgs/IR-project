@@ -74,7 +74,6 @@ public class SourceGUI extends JFrame {
 	}
 	
 	private void selectedSource(int code) {
-		System.out.println("base: " + code);
 		searchGUI2.sourceCode = code;
 		searchGUI2.setVisible(true);
 		dispose();
